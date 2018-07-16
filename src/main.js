@@ -4,14 +4,7 @@ import MyComponent from './MyComponent.vue';
 
 const Foo = { template: '<div>foo</div>' }
 const Bar = { template: '<div>bar</div>' }
-
-const User = {
-  template: '<div><b>User {{ $route.params.id }}</b></div>',
-  beforeRouteUpdate: function(to, from, next) {
-    console.log(to, from);
-    next();
-  }
-};
+const User = { template: '<div>user:{{$route.params.id}}</div>' };
 
 const Container = {
   template: `
@@ -21,8 +14,8 @@ const Container = {
         <router-link to="/foo">go to foo</router-link>
         <router-link to="/bar">go to bar</router-link>
         <br />
-        <router-link to="/user/foo">go to foo</router-link>
-        <router-link to="/user/bar">go to bar</router-link>
+        <router-link to="/user/yama">go to yama</router-link>
+        <router-link to="/user/taro">go to taro</router-link>
       </p>
       <router-view></router-view>
     </div>
@@ -38,18 +31,16 @@ const routes = [
 
 {
   console.log('ready!');
-  console.log(MyComponent);
   
   Vue.use(VueRouter);
 
   new Vue({
     el: '#root',
     router: new VueRouter({ routes }),
-    components: { Container, MyComponent },
+    components: { Container },
     template: `
       <div>
         <Container />
-        <MyComponent />
       </div>
     `
   });
